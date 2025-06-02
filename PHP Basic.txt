@@ -1,0 +1,1185 @@
+//print
+<?php
+$txt = "PHP";
+echo "I love $txt!";
+?>
+
+//version cheek
+echo phpversion();
+
+//syntax
+<?php
+// PHP code goes here
+?>
+
+//simple php file
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>My first PHP page</h1>
+
+<?php
+echo "Hello World!";
+?>
+
+</body>
+
+//PHP Case Sensitivity
+<!DOCTYPE html>
+<html>
+<body>
+
+<?php
+ECHO "Hello World!<br>"; // EcHo and echo treated differently
+echo "Hello World!<br>";
+EcHo "Hello World!<br>";
+?>
+
+</body>
+</html>
+
+//$COLOR is not same as $color
+<!DOCTYPE html>
+<html>
+<body>
+
+<?php
+$color = "red";
+echo "My car is " . $color . "<br>";
+echo "My house is " . $COLOR . "<br>";
+echo "My boat is " . $coLOR . "<br>";
+?>
+
+</body>
+</html>
+
+//Comment
+// This is a single-line comment
+
+# This is also a single-line comment
+
+/* This is a
+multi-line comment */
+
+//variable
+$x = 5;//integer type
+$y = "John";//string
+
+//output of the variable inside text
+$txt = "W3Schools.com";
+echo "I love $txt!";
+
+//summation of two value
+$x = 5;
+$y = 4;
+echo $x + $y;
+
+//Add two different variable of not same type
+$x = 5;      // $x is an integer
+$y = "John"; // $y is a string
+echo $x;
+echo $y;
+
+#cheek datatype of variable by var_dump() function
+var_dump(5);//int
+var_dump("John");//string
+var_dump(3.14);//float
+var_dump(true);//boolean
+var_dump([2, 3, 56]);//array make in form of associative array
+var_dump(NULL);//Null type
+
+//Assign Multiple Values
+$x = $y = $z = "Fruits"
+
+$x = 5; // global scope
+
+//Global scope
+function myTest() {
+  // using x inside this function will generate an error
+  echo "<p>Variable x inside function is: $x</p>"; //No output
+}
+myTest();//5
+
+echo "<p>Variable x outside function is: $x</p>";
+
+//Local scope
+function myTest() {
+  $x = 5; // local scope
+  echo "<p>Variable x inside function is: $x</p>";//5
+}
+myTest();
+
+// using x outside the function will generate an error
+echo "<p>Variable x outside function is: $x</p>";//No output
+
+echo "Hello";
+//same as:
+echo("Hello") but it is a function;//without parentheses
+
+//Print by different styling way..
+echo "<h2>PHP is Fun!</h2>";
+echo "Hello world!<br>";
+echo "I'm about to learn PHP!<br>";
+echo "This ", "string ", "was ", "made ", "with multiple parameters.";
+
+//Display text and varriable together
+$txt1 = "Learn PHP";
+$txt2 = "W3Schools.com";
+
+echo "<h2>$txt1</h2>";
+echo "<p>Study PHP at $txt2</p>";
+
+//array
+$cars = array("Volvo","BMW","Toyota");
+var_dump($cars);
+
+//class sample basic
+class Car {
+  public $color;
+  public $model;
+  public function __construct($color, $model) {
+    $this->color = $color;
+    $this->model = $model;
+  }
+  public function message() {
+    return "My car is a " . $this->color . " " . $this->model . "!";
+  }
+}
+
+$myCar = new Car("red", "Volvo");
+var_dump($myCar);
+
+//single qotes and double
+echo "Hello";
+echo 'Hello';
+
+//double qotes in text print
+$x = "John";
+echo "Hello $x";
+
+//Length of string
+echo strlen("Hello world!");===> strlen()
+
+//Word count*
+echo str_word_count("Hello world!");==> str_word_count()
+
+//specific text within a string
+echo strpos("Hello world!", "world");
+
+//strtoupper()
+$x = "Hello World!";
+echo strtoupper($x);
+
+//strtolower()
+$x = "Hello World!";
+echo strtolower($x);
+
+//Replace String
+$x = "Hello World!";
+echo str_replace("World", "Dolly", $x);
+
+//Reverse a String
+$x = "Hello World!";
+echo strrev($x);
+
+//Remove Whitespace
+$x = " Hello World! ";
+echo trim($x);
+
+Convert String into Array by explode() function
+$x = "Hello World!";
+$y = explode(" ", $x);
+
+//Use the print_r() function to display the result:
+print_r($y);
+
+/*
+Result:
+Array ( [0] => Hello [1] => World! )
+*/
+
+//String Concatenation
+$x = "Hello";
+$y = "World";
+$z = $x . " " . $y;
+echo $z;
+
+//Slicing string by substr function
+$x = "Hello World!";
+echo substr($x, 6, 5);
+echo substr($x, 6);
+echo substr($x, -5, 3);
+echo substr($x, 5, -3);
+
+//Escape character-> \
+$x = "We are the so-called \"Vikings\" from the north.";
+Example:-
+\'	Single Quote	
+\"	Double Quote	
+\$	PHP variables	
+\n	New Line	
+\r	Carriage Return	
+\t	Tab	
+\f	Form Feed	
+\ooo	Octal value	
+\xhh	Hex value
+
+//Check if the type of a variable is integer
+$x = 5985;
+var_dump(is_int($x));
+
+$x = 59.85;
+var_dump(is_int($x));
+
+$x = 10.365;
+var_dump(is_float($x));
+
+$x = 1.9e411;
+var_dump($x);
+
+$x = acos(8);
+var_dump($x);
+
+//Check if the variable is numeric
+
+$x = 5985;
+var_dump(is_numeric($x));
+
+$x = "5985";
+var_dump(is_numeric($x));
+$x = "59.85" + 100;
+var_dump(is_numeric($x));
+
+$x = "Hello";
+var_dump(is_numeric($x));
+
+//Cast float and string to integer typecasting
+
+// Cast float to int
+$x = 23465.768;
+$int_cast = (int)$x;
+echo $int_cast;
+
+echo "<br>";
+
+// Cast string to int
+$x = "23465.768";
+$int_cast = (int)$x;
+echo $int_cast;
+
+//typecasting
+$a = 5;       // Integer
+$b = 5.34;    // Float
+$c = "hello"; // String
+$d = true;    // Boolean
+$e = NULL;    // NULL
+
+$a = (string) $a;
+$b = (string) $b;
+$c = (string) $c;
+$d = (string) $d;
+$e = (string) $e;
+
+//To verify the type of any object in PHP, use the var_dump() function:
+var_dump($a);
+var_dump($b);
+var_dump($c);
+var_dump($d);
+var_dump($e);
+
+//pi() Function
+echo(pi());
+
+//min() and max() Functions
+echo(min(0, 150, 30, 20, -8, -200));
+echo(max(0, 150, 30, 20, -8, -200));
+
+//abs function
+echo(abs(-6.7));
+
+//sqrt() Function
+echo(sqrt(64));
+
+//round() Function
+echo(round(0.60));
+echo(round(0.49));
+
+//rand function
+rand()->random number
+echo(rand(10, 100));
+
+//Constant operation by define()
+define(name, value);
+//Example
+define("GREETING", "Coder Hub by Om!");
+echo GREETING;
+
+const MYCAR = "Volvo";
+echo MYCAR;
+
+//constant arrays
+define("cars", [
+  "Alfa Romeo",
+  "BMW",
+  "Toyota"
+]);
+echo cars[0];
+
+//As function
+define("GREETING", "Coder Hub by Om!");
+
+function myTest() {
+  echo GREETING;
+}
+
+myTest();
+
+//Magic Constants
+
+Constant	Description	
+__CLASS__	If used inside a class, the class name is returned.	
+__DIR__	The directory of the file.	
+__FILE__	The file name including the full path.	
+__FUNCTION__	If inside a function, the function name is returned.	
+__LINE__	The current line number.	
+__METHOD__	If used inside a function that belongs to a class, both class and function name is returned.	
+__NAMESPACE__	If used inside a namespace, the name of the namespace is returned.	
+__TRAIT__	If used inside a trait, the trait name is returned.	
+ClassName::class	Returns the name of the specified class and the name of the namespace, if any.
+
+//PHP Arithmetic Operators
+The PHP arithmetic operators are used with numeric values to perform common arithmetical operations, such as addition, subtraction, multiplication etc.
+
+Operator	Name	Example	Result	Try it
++	Addition	$x + $y	Sum of $x and $y	
+-	Subtraction	$x - $y	Difference of $x and $y	
+*	Multiplication	$x * $y	Product of $x and $y	
+/	Division	$x / $y	Quotient of $x and $y	
+%	Modulus	$x % $y	Remainder of $x divided by $y	
+**	Exponentiation	$x ** $y	Result of raising $x to the $y'th pow
+
+PHP Assignment Operators
+The PHP assignment operators are used with numeric values to write a value to a variable.
+
+The basic assignment operator in PHP is "=". It means that the left operand gets set to the value of the assignment expression on the right.
+
+Assignment	Same as...	Description	Try it
+x = y	x = y	The left operand gets set to the value of the expression on the right	
+x += y	x = x + y	Addition	
+x -= y	x = x - y	Subtraction	
+x *= y	x = x * y	Multiplication	
+x /= y	x = x / y	Division	
+x %= y	x = x % y	Modulus
+
+The PHP comparison operators are used to compare two values (number or string):
+
+Operator	Name	Example	Result	Try it
+==	Equal	$x == $y	Returns true if $x is equal to $y	
+===	Identical	$x === $y	Returns true if $x is equal to $y, and they are of the same type	
+!=	Not equal	$x != $y	Returns true if $x is not equal to $y	
+<>	Not equal	$x <> $y	Returns true if $x is not equal to $y	
+!==	Not identical	$x !== $y	Returns true if $x is not equal to $y, or they are not of the same type	
+>	Greater than	$x > $y	Returns true if $x is greater than $y	
+<	Less than	$x < $y	Returns true if $x is less than $y	
+>=	Greater than or equal to	$x >= $y	Returns true if $x is greater than or equal to $y	
+<=	Less than or equal to	$x <= $y	Returns true if $x is less than or equal to $y	
+<=>	Spaceship	$x <=> $y	Returns an integer less than, equal to, or greater than zero, depending on if $x is less than, equal to, or greater than $y. Introduced in PHP 7.	
+
+PHP Increment / Decrement Operators
+The PHP increment operators are used to increment a variable's value.
+
+The PHP decrement operators are used to decrement a variable's value.
+
+Operator	Same as...	Description	Try it
+++$x	Pre-increment	Increments $x by one, then returns $x	
+$x++	Post-increment	Returns $x, then increments $x by one	
+--$x	Pre-decrement	Decrements $x by one, then returns $x	
+$x--	Post-decrement	Returns $x, then decrements $x by one
+
+PHP Logical Operators
+The PHP logical operators are used to combine conditional statements.
+
+Operator	Name	Example	Result	Try it
+and	And	$x and $y	True if both $x and $y are true	
+or	Or	$x or $y	True if either $x or $y is true	
+xor	Xor	$x xor $y	True if either $x or $y is true, but not both	
+&&	And	$x && $y	True if both $x and $y are true	
+||	Or	$x || $y	True if either $x or $y is true	
+!	Not	!$x	True if $x is not true
+
+PHP String Operators
+PHP has two operators that are specially designed for strings.
+
+Operator	Name	Example	Result	Try it
+.	Concatenation	$txt1 . $txt2	Concatenation of $txt1 and $txt2	
+.=	Concatenation assignment	$txt1 .= $txt2	Appends $txt2 to $txt1	
+
+PHP Array Operators
+The PHP array operators are used to compare arrays.
+
+Operator	Name	Example	Result	Try it
++	Union	$x + $y	Union of $x and $y	
+==	Equality	$x == $y	Returns true if $x and $y have the same key/value pairs	
+===	Identity	$x === $y	Returns true if $x and $y have the same key/value pairs in the same order and of the same types	
+!=	Inequality	$x != $y	Returns true if $x is not equal to $y	
+<>	Inequality	$x <> $y	Returns true if $x is not equal to $y	
+!==	Non-identity	$x !== $y	Returns true if $x is not identical to $y	
+
+HP Conditional Assignment Operators
+The PHP conditional assignment operators are used to set a value depending on conditions:
+
+Operator	Name	Example	Result	Try it
+?:	Ternary	$x = expr1 ? expr2 : expr3	Returns the value of $x.
+The value of $x is expr2 if expr1 = TRUE.
+The value of $x is expr3 if expr1 = FALSE	
+??	Null coalescing	$x = expr1 ?? expr2	Returns the value of $x.
+The value of $x is expr1 if expr1 exists, and is not NULL.
+If expr1 does not exist, or is NULL, the value of $x is expr2.
+Introduced in PHP 7
+
+PHP Conditional Statements
+Very often when you write code, you want to perform different actions for different conditions. You can use conditional statements in your code to do this.
+
+//In PHP we have the following conditional statements:
+
+if statement - executes some code if one condition is true
+if...else statement - executes some code if a condition is true and another code if that condition is false
+if...elseif...else statement - executes different codes for more than two conditions
+switch statement - selects one of many blocks of code to be executed
+
+PHP - The if Statement
+The if statement executes some code if one condition is true.
+
+Syntax
+if (condition) {
+  // code to be executed if condition is true;
+}
+
+//Example
+if (5 > 3) {
+  echo "Have a good day!";
+}
+
+$t = 14;
+
+if ($t < 20) {
+  echo "Have a good day!";
+}
+
+//Check if $t is equal to 14:
+
+$t = 14;
+
+if ($t == 14) {
+  echo "Have a good day!";
+}
+
+Logical Operators
+To check more than one condition, we can use logical operators, like the && operator:
+
+Example
+//Check if $a is greater than $b, AND if $a is less than $c:
+
+$a = 200;
+$b = 33;
+$c = 500;
+
+if ($a > $b && $a < $c ) {
+  echo "Both conditions are true";
+}
+
+//Check if $a is either 2, 3, 4, 5, 6, or 7:
+
+$a = 5;
+
+if ($a == 2 || $a == 3 || $a == 4 || $a == 5 || $a == 6 || $a == 7) {
+  echo "$a is a number between 2 and 7";
+}
+
+//If and Else
+PHP - The if...else Statement
+The if...else statement executes some code if a condition is true and another code if that condition is false.
+
+Syntax
+if (condition) {
+  // code to be executed if condition is true;
+} else {
+  // code to be executed if condition is false;
+}
+
+$t = date("H");
+
+if ($t < "20") {
+  echo "Have a good day!";
+} else {
+  echo "Have a good night!";
+}
+
+//PHP - The if...elseif...else Statement
+The if...elseif...else statement executes different codes for more than two conditions.
+
+Syntax
+if (condition) {
+  code to be executed if this condition is true;
+} elseif (condition) {
+  // code to be executed if first condition is false and this condition is true;
+} else {
+  // code to be executed if all conditions are false;
+}
+
+$t = date("H");
+
+if ($t < "10") {
+  echo "Have a good morning!";
+} elseif ($t < "20") {
+  echo "Have a good day!";
+} else {
+  echo "Have a good night!";
+}
+
+//Short Hand If
+$a = 5;
+
+if ($a < 10) $b = "Hello";
+
+echo $b
+
+$a = 13;
+
+$b = $a < 10 ? "Hello" : "Good Bye";
+
+echo $b;
+
+//Nested If
+$a = 13;
+
+if ($a > 10) {
+  echo "Above 10";
+  if ($a > 20) {
+    echo " and also above 20";
+  } else {
+    echo " but not above 20";
+  }
+}
+
+//The PHP switch Statement
+Use the switch statement to select one of many blocks of code to be executed.
+
+Syntax
+switch (expression) {
+  case label1:
+    //code block
+    break;
+  case label2:
+    //code block;
+    break;
+  case label3:
+    //code block
+    break;
+  default:
+    //code block
+}
+
+$favcolor = "red";
+
+switch ($favcolor) {
+  case "red":
+    echo "Your favorite color is red!";
+    break;
+  case "blue":
+    echo "Your favorite color is blue!";
+    break;
+  case "green":
+    echo "Your favorite color is green!";
+    break;
+  default:
+    echo "Your favorite color is neither red, blue, nor green!";
+}
+
+//PHP Loops
+Often when you write code, you want the same block of code to run over and over again a certain number of times. So, instead of adding several almost equal code-lines in a script, we can use loops.
+
+Loops are used to execute the same block of code again and again, as long as a certain condition is true.
+
+In PHP, we have the following loop types:
+
+while - loops through a block of code as long as the specified condition is true
+do...while - loops through a block of code once, and then repeats the loop as long as the specified condition is true
+for - loops through a block of code a specified number of times
+foreach - loops through a block of code for each element in an array
+
+Print $i as long as $i is less than 6:
+
+$i = 1;
+while ($i < 6) {
+  echo $i;
+  $i++;
+}
+
+$i = 1;
+while ($i < 6) {
+  if ($i == 3) break;
+  echo $i;
+  $i++;
+}
+
+$i = 0;
+while ($i < 6) {
+  $i++;
+  if ($i == 3) continue;
+  echo $i;
+}
+
+$i = 1;
+while ($i < 6):
+  echo $i;
+  $i++;
+endwhile;
+
+$i = 0;
+while ($i < 100) {
+  $i+=10;
+  echo $i "<br>";
+}
+
+$i = 1;
+
+do {
+  echo $i;
+  $i++;
+} while ($i < 6);
+
+$i = 8;
+
+do {
+  echo $i;
+  $i++;
+} while ($i < 6);
+
+$i = 0;
+
+do {
+  $i++;
+  if ($i == 3) continue;
+  echo $i;
+} while ($i < 6);
+
+//The PHP for Loop
+The for loop is used when you know how many times the script should run.
+
+Syntax
+for (expression1, expression2, expression3) {
+  // code block
+}
+
+for ($x = 0; $x <= 10; $x++) {
+  echo "The number is: $x <br>";
+}
+
+for ($x = 0; $x <= 10; $x++) {
+  if ($x == 3) break;
+  echo "The number is: $x <br>";
+}
+
+for ($x = 0; $x <= 10; $x++) {
+  if ($x == 3) continue;
+  echo "The number is: $x <br>";
+}
+
+for ($x = 0; $x <= 100; $x+=10) {
+  echo "The number is: $x <br>";
+}
+
+//PHP foreach Loop
+$colors = array("red", "green", "blue", "yellow");
+
+foreach ($colors as $x) {
+  echo "$x <br>";
+}
+
+$members = array("Peter"=>"35", "Ben"=>"37", "Joe"=>"43");
+
+foreach ($members as $x => $y) {
+  echo "$x : $y <br>";
+}
+
+$colors = array("red", "green", "blue", "yellow");
+
+foreach ($colors as $x) {
+  if ($x == "blue") break;
+  echo "$x <br>";
+}
+
+$colors = array("red", "green", "blue", "yellow");
+
+foreach ($colors as $x) {
+  if ($x == "blue") continue;
+  echo "$x <br>";
+}$colors = array("red", "green", "blue", "yellow");
+
+foreach ($colors as $x) {
+  if ($x == "blue") $x = "pink";
+}
+
+var_dump($colors);
+
+$colors = array("red", "green", "blue", "yellow");
+
+foreach ($colors as &$x) {
+  if ($x == "blue") $x = "pink";
+}
+
+var_dump($colors);
+
+$colors = array("red", "green", "blue", "yellow");
+
+foreach ($colors as $x) :
+  echo "$x <br>";
+endforeach;
+
+//Break in For loop
+for ($x = 0; $x < 10; $x++) {
+  if ($x == 4) {
+    break;
+  }
+  echo "The number is: $x <br>";
+}
+
+$x = 0;
+
+while($x < 10) {
+  if ($x == 4) {
+    break;
+  }
+  echo "The number is: $x <br>";
+  $x++;
+}
+
+$i = 1;
+
+do {
+  if ($i == 3) break;
+  echo $i;
+  $i++;
+} while ($i < 6);
+
+$colors = array("red", "green", "blue", "yellow");
+
+foreach ($colors as $x) {
+  if ($x == "blue") break;
+  echo "$x <br>";
+}
+
+//Continue in For Loops
+for ($x = 0; $x < 10; $x++) {
+  if ($x == 4) {
+    continue;
+  }
+  echo "The number is: $x <br>";
+}
+
+$x = 0;
+
+while($x < 10) {
+  if ($x == 4) {
+    continue;
+  }
+  echo "The number is: $x <br>";
+  $x++;
+}
+
+$i = 0;
+
+do {
+  $i++;
+  if ($i == 3) continue;
+  echo $i;
+} while ($i < 6);
+
+$colors = array("red", "green", "blue", "yellow");
+
+foreach ($colors as $x) {
+  if ($x == "blue") continue;
+  echo "$x <br>";
+}
+
+//PHP Functions
+function myMessage() {
+  echo "Hello world!";
+}
+
+function myMessage() {
+  echo "Hello world!";
+}
+
+myMessage();
+
+function familyName($fname) {
+  echo "$fname Refsnes.<br>";
+}
+
+familyName("Jani");
+familyName("Hege");
+familyName("Stale");
+familyName("Kai Jim");
+familyName("Borge")
+
+function familyName($fname, $year) {
+  echo "$fname Refsnes. Born in $year <br>";
+}
+
+familyName("Hege", "1975");
+familyName("Stale", "1978");
+familyName("Kai Jim", "1983");
+
+function setHeight($minheight = 50) {
+  echo "The height is : $minheight <br>";
+}
+
+setHeight(350);
+setHeight(); // will use the default value of 50
+setHeight(135);
+setHeight(80);
+
+function sum($x, $y) {
+  $z = $x + $y;
+  return $z;
+}
+
+echo "5 + 10 = " . sum(5, 10) . "<br>";
+echo "7 + 13 = " . sum(7, 13) . "<br>";
+echo "2 + 4 = " . sum(2, 4);
+
+function add_five(&$value) {
+  $value += 5;
+}
+
+$num = 2;
+add_five($num);
+echo $num;
+
+function sumMyNumbers(...$x) {
+  $n = 0;
+  $len = count($x);
+  for($i = 0; $i < $len; $i++) {
+    $n += $x[$i];
+  }
+  return $n;
+}
+
+$a = sumMyNumbers(5, 2, 6, 2, 7, 7);
+echo $a;
+
+function myFamily($lastname, ...$firstname) {
+  $txt = "";
+  $len = count($firstname);
+  for($i = 0; $i < $len; $i++) {
+    $txt = $txt."Hi, $firstname[$i] $lastname.<br>";
+  }
+  return $txt;
+}
+
+$a = myFamily("Doe", "Jane", "John", "Joey");
+echo $a;
+
+function addNumbers(int $a, int $b) {
+  return $a + $b;
+}
+echo addNumbers(5, "5 days");
+// since strict is NOT enabled "5 days" is changed to int(5), and it will return 10
+
+//strict_types enabled
+<?php declare(strict_types=1); // strict requirement
+function addNumbers(float $a, float $b) : float {
+  return $a + $b;
+}
+echo addNumbers(1.2, 5.2);
+?>
+
+<?php declare(strict_types=1); // strict requirement
+function addNumbers(float $a, float $b) : int {
+  return (int)($a + $b);
+}
+echo addNumbers(1.2, 5.2)
+
+//Array to be continue...
+$cars = array("Volvo", "BMW", "Toyota");
+An array stores multiple values in one single variable..
+
+PHP Array Types
+In PHP, there are three types of arrays:
+
+Indexed arrays - Arrays with a numeric index
+Associative arrays - Arrays with named keys
+Multidimensional arrays - Arrays containing one or more arrays
+
+Array items of four different data types:
+$myArr = array("Volvo", 15, ["apples", "bananas"], myFunction);
+
+Array Functions:-
+$cars = array("Volvo", "BMW", "Toyota");
+echo count($cars);
+
+//PHP Indexed Arrays
+$cars = array("Volvo", "BMW", "Toyota");
+var_dump($cars);
+
+//Access Indexed Arrays
+$cars = array("Volvo", "BMW", "Toyota");
+echo $cars[0];
+
+//Change Value
+$cars = array("Volvo", "BMW", "Toyota");
+$cars[1] = "Ford";
+var_dump($cars);
+
+//Loop Through an Indexed Array
+$cars = array("Volvo", "BMW", "Toyota");
+foreach ($cars as $x) {
+  echo "$x <br>";
+}
+
+//PHP Associative Arrays
+Associative arrays are arrays that use named keys that you assign to them as a given value.
+
+$car = array("brand"=>"Ford", "model"=>"Mustang", "year"=>1964);
+var_dump($car);
+
+//Access Associative Arrays
+
+$car = array("brand"=>"Ford", "model"=>"Mustang", "year"=>1964);
+echo $car["model"];
+
+//Change Value
+$car = array("brand"=>"Ford", "model"=>"Mustang", "year"=>1964);
+$car["year"] = 2024;
+var_dump($car);
+
+//Loop Through an Associative Array
+$car = array("brand"=>"Ford", "model"=>"Mustang", "year"=>1964);
+
+foreach ($car as $x => $y) {
+  echo "$x: $y <br>";
+}
+
+//PHP Global Variables - Superglobals
+Some predefined variables in PHP are "superglobals", which means that they are always accessible, regardless of scope - and you can access them from any function, class or file without having to do anything special.
+
+The PHP superglobal variables are:
+
+$GLOBALS
+$_SERVER
+$_REQUEST
+$_POST
+$_GET
+$_FILES
+$_ENV
+$_COOKIE
+$_SESSION
+
+//$_REQUEST
+$_REQUEST is a PHP super global variable which contains submitted form data, and all cookie data.
+
+In other words, $_REQUEST is an array containing data from $_GET, $_POST, and $_COOKIE.
+
+You can access this data with the $_REQUEST keyword followed by the name of the form field, or cookie, like this:
+
+$_REQUEST['firstname']
+
+<html>
+<body>
+
+<form method="post" action="demo_request.php">
+  Name: <input type="text" name="fname">
+  <input type="submit">
+</form>
+
+</body>
+</html>
+
+$name = $_REQUEST['fname'];
+echo $name;
+
+<html>
+<body>
+
+<form method="post" action="<?php echo $_SERVER['PHP_SELF'];?>">
+  Name: <input type="text" name="fname">
+  <input type="submit">
+</form>
+
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  $name = htmlspecialchars($_REQUEST['fname']);
+  if (empty($name)) {
+    echo "Name is empty";
+  } else {
+    echo $name;
+  }
+}
+?>
+
+</body>
+</html>
+Using $_REQUEST on $_GET Requests
+GET request can be form submissions as in the example above, with the method attribute of the HTML <form> element set to GET.
+
+GET requests can also be data from a query string (information added after a URL address).
+
+Here is an example of how an HTML hyperlink, with a query string could look like:
+
+HTML link
+
+<html>
+<body>
+
+<a href="demo_phpfile.php?subject=PHP&web=W3schools.com">Test $GET</a>
+
+</body>
+</html>
+In the PHP file we can use the $_REQUEST variable to collect the value of the query string.
+
+Example
+The PHP file demo_phpfile.php:
+
+<html>
+<body>
+
+<?php
+echo "Study " . $_REQUEST['subject'] . " at " . $_REQUEST['web'];
+?>
+
+</body>
+</html>
+
+//PHP $_GET
+$_GET contains an array of variables received via the HTTP GET method.
+
+There are two main ways to send variables via the HTTP GET method:
+
+Query strings in the URL
+HTML Forms
+
+Query string in the URL
+A query string is data added at the end of a URL. In the link below, everything after the ? sign is part of the query string:
+
+<a href="demo_phpfile.php?subject=PHP&web=W3schools.com">Test $GET</a>
+The query string above contains two key/value pairs:
+
+subject=PHP
+web=W3schools.com
+
+The PHP file demo_phpfile.php:
+
+<html>
+<body>
+
+<?php
+echo "Study " . $_GET['subject'] . " at " . $_GET['web'];
+?>
+
+</body>
+</html>
+
+
+JavaScript - Introduction
+
+Unmute
+Duration 
+2:49
+/
+Current Time 
+0:00
+
+Advanced Settings
+
+Fullscreen
+
+Play
+
+Rewind 10 Seconds
+
+Up Next
+Brand logo
+
+$_GET in HTML Forms
+A HTML form submits information via the HTTP GET method if the form's method attribute is set to "GET".
+
+To demonstrate this, we start by creating a simple HTML form:
+
+HTML Form
+
+<html>
+<body>
+
+<form action="welcome_get.php" method="GET">
+  Name: <input type="text" name="name">
+  E-mail: <input type="text" name="email">
+  <input type="submit">
+</form>
+
+</body>
+</html>
+
+When a user clicks the submit button, the form data is sent to a PHP file specified in the action attribute of the <form> tag.
+
+The form fields are sent to the PHP file, with your input, as query strings:
+
+welcome_get.php?name=John&email=john@example.com
+In the action file we can use the $_GET variable to collect the value of the input fields.
+
+Example
+PHP code inside the welcome_get.php page:
+
+<html>
+<body>
+
+Welcome <?php echo $_GET["name"]; ?><br>
+Your email address is: <?php echo $_GET["email"]; ?>
+
+</body>
+</html>
+
+What is a Regular Expression?
+A regular expression is a sequence of characters that forms a search pattern. When you search for data in a text, you can use this search pattern to describe what you are searching for.
+
+A regular expression can be a single character, or a more complicated pattern.
+
+Regular expressions can be used to perform all types of text search and text replace operations.
+Syntax
+In PHP, regular expressions are strings composed of delimiters, a pattern and optional modifiers.
+
+$exp = "/w3schools/i";
+In the example above, / is the delimiter, w3schools is the pattern that is being searched for, and i is a modifier that makes the search case-insensitive.
+
+Using preg_match()
+The preg_match() function will tell you whether a string contains matches of a pattern.
+
+ExampleGet your own PHP Server
+Use a regular expression to do a case-insensitive search for "w3schools" in a string:
+
+$str = "Visit W3Schools";
+$pattern = "/w3schools/i";
+echo preg_match($pattern, $str);
+
+Using preg_match_all()
+The preg_match_all() function will tell you how many matches were found for a pattern in a string.
+
+Example
+Use a regular expression to do a case-insensitive count of the number of occurrences of "ain" in a string:
+
+$str = "The rain in SPAIN falls mainly on the plains.";
+$pattern = "/ain/i";
+echo preg_match_all($pattern, $str);
+
+Using preg_replace()
+The preg_replace() function will replace all of the matches of the pattern in a string with another string.
+
+Example
+Use a case-insensitive regular expression to replace Microsoft with W3Schools in a string:
+
+$str = "Visit Microsoft!";
+$pattern = "/microsoft/i";
+echo preg_replace($pattern, "W3Schools", $str);
+

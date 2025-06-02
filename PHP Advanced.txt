@@ -1,0 +1,1128 @@
+//PHP Date and Time
+The PHP date() function is used to format a date and/or a time.
+//The PHP Date() Function
+The PHP date() function formats a timestamp to a more readable date and time.
+
+//Syntax
+date(format,timestamp)
+Parameter	Description
+format	Required. Specifies the format of the timestamp
+timestamp	Optional. Specifies a timestamp. Default is the current date and time
+
+A timestamp is a sequence of characters, denoting the date and/or time at which a certain event occurred.
+
+//Get a Date
+The required format parameter of the date() function specifies how to format the date (or time).
+
+Here are some characters that are commonly used for dates:
+
+d - Represents the day of the month (01 to 31)
+m - Represents a month (01 to 12)
+Y - Represents a year (in four digits)
+l (lowercase 'L') - Represents the day of the week
+
+//Time
+
+<?php
+
+echo "Today is " . date("Y/m/d") . "<br>";
+echo "Today is " . date("Y.m.d") . "<br>";
+echo "Today is " . date("Y-m-d") . "<br>";
+echo "Today is " . date("l");
+
+?>
+
+PHP Tip - Automatic Copyright Year
+Use the date() function to automatically update the copyright year on your website:
+
+&copy; 2010-<?php echo date("Y");?>
+
+Get a Time
+Here are some characters that are commonly used for times:
+
+H - 24-hour format of an hour (00 to 23)
+h - 12-hour format of an hour with leading zeros (01 to 12)
+i - Minutes with leading zeros (00 to 59)
+s - Seconds with leading zeros (00 to 59)
+a - Lowercase Ante meridiem and Post meridiem (am or pm)
+The example below outputs the current time in the specified format:
+
+Example
+<?php
+echo "The time is " . date("h:i:sa");
+?>
+
+Get Your Time Zone
+If the time you got back from the code is not correct, it's probably because your server is in another country or set up for a different timezone.
+
+So, if you need the time to be correct according to a specific location, you can set the timezone you want to use.
+
+The example below sets the timezone to "America/New_York", then outputs the current time in the specified format:
+
+Example
+<?php
+date_default_timezone_set("America/New_York");
+echo "The time is " . date("h:i:sa");
+?>
+
+Create a Date With mktime()
+The optional timestamp parameter in the date() function specifies a timestamp. If omitted, the current date and time will be used (as in the examples above).
+
+The PHP mktime() function returns the Unix timestamp for a date. The Unix timestamp contains the number of seconds between the Unix Epoch (January 1 1970 00:00:00 GMT) and the time specified.
+
+Syntax
+mktime(hour, minute, second, month, day, year)
+
+The example below creates a date and time with the date() function from a number of parameters in the mktime() function:
+
+Example
+<?php
+$d=mktime(11, 14, 54, 8, 12, 2014);
+echo "Created date is " . date("Y-m-d h:i:sa", $d);
+?>
+
+<?php
+$d=strtotime("tomorrow");
+echo date("Y-m-d h:i:sa", $d) . "<br>";
+
+$d=strtotime("next Saturday");
+echo date("Y-m-d h:i:sa", $d) . "<br>";
+
+$d=strtotime("+3 Months");
+echo date("Y-m-d h:i:sa", $d) . "<br>";
+?>
+However, strtotime() is not perfect, so remember to check the strings you put in there.
+
+<?php
+$startdate = strtotime("Saturday");
+$enddate = strtotime("+6 weeks", $startdate);
+
+while ($startdate < $enddate) {
+  echo date("M d", $startdate) . "<br>";
+  $startdate = strtotime("+1 week", $startdate);
+}
+?>
+
+<?php
+$d1=strtotime("July 04");
+$d2=ceil(($d1-time())/60/60/24);
+echo "There are " . $d2 ." days until 4th of July.";
+?>
+
+PHP Include Files
+The include (or require) statement takes all the text/code/markup that exists in the specified file and copies it into the file that uses the include statement.
+
+Including files is very useful when you want to include the same PHP, HTML, or text on multiple pages of a website.
+
+PHP include and require Statements
+It is possible to insert the content of one PHP file into another PHP file (before the server executes it), with the include or require statement.
+
+The include and require statements are identical, except upon failure:
+
+require will produce a fatal error (E_COMPILE_ERROR) and stop the script
+include will only produce a warning (E_WARNING) and the script will continue
+
+PHP include Examples
+Example 1
+Assume we have a standard footer file called "footer.php", that looks like this:
+
+<?php
+echo "<p>Copyright &copy; 1999-" . date("Y") . " W3Schools.com</p>";
+?>
+To include the footer file in a page, use the include statement:
+
+<html>
+<body>
+
+<h1>Welcome to my home page!</h1>
+<p>Some text.</p>
+<p>Some more text.</p>
+<?php include 'footer.php';?>
+
+</body>
+</html>
+
+Example 2
+Assume we have a standard menu file called "menu.php":
+
+<?php
+echo '<a href="/default.asp">Home</a> -
+<a href="/html/default.asp">HTML Tutorial</a> -
+<a href="/css/default.asp">CSS Tutorial</a> -
+<a href="/js/default.asp">JavaScript Tutorial</a> -
+<a href="default.asp">PHP Tutorial</a>';
+?>
+All pages in the Web site should use this menu file. 
+
+<html>
+<body>
+
+<div class="menu">
+<?php include 'menu.php';?>
+</div>
+
+<h1>Welcome to my home page!</h1>
+<p>Some text.</p>
+<p>Some more text.</p>
+
+</body>
+</html>
+
+Example 3
+Assume we have a file called "vars.php", with some variables defined:
+
+<?php
+$color='red';
+$car='BMW';
+?>
+Then, if we include the "vars.php" file, the variables can be used in the calling file:
+
+<html>
+<body>
+
+<h1>Welcome to my home page!</h1>
+<?php include 'vars.php';
+echo "I have a $color $car.";
+?>
+
+</body>
+</html>
+
+//PHP include vs. require
+The require statement is also used to include a file into the PHP code.
+<html>
+<body>
+
+<h1>Welcome to my home page!</h1>
+<?php include 'noFileExists.php';
+echo "I have a $color $car.";
+?>
+
+</body>
+</html>
+
+<html>
+<body>
+
+<h1>Welcome to my home page!</h1>
+<?php require 'noFileExists.php';
+echo "I have a $color $car.";
+?>
+
+</body>
+</html>
+Use require when the file is required by the application.
+
+Use include when the file is not required and application should continue when file is not found.
+
+//PHP File Handling
+File handling is an important part of any web application. You often need to open and process a file for different tasks.
+
+PHP readfile() Function
+The readfile() function reads a file and writes it to the output buffer.
+
+Assume we have a text file called "webdictionary.txt", stored on the server, that looks like this:
+
+AJAX = Asynchronous JavaScript and XML
+CSS = Cascading Style Sheets
+HTML = Hyper Text Markup Language
+PHP = PHP Hypertext Preprocessor
+SQL = Structured Query Language
+SVG = Scalable Vector Graphics
+XML = EXtensible Markup Language
+The PHP code to read the file and write it to the output buffer is as follows (the readfile() function returns the number of bytes read on success):
+
+ExampleGet your own PHP Server
+<?php
+echo readfile("webdictionary.txt");
+?>
+
+The readfile() function is useful if all you want to do is open up a file and read its contents.
+
+The next chapters will teach you more about file handling.
+
+PHP Open File - fopen()
+A better method to open files is with the fopen() function. This function gives you more options than the readfile() function.
+
+We will use the text file, "webdictionary.txt", during the lessons:
+
+AJAX = Asynchronous JavaScript and XML
+CSS = Cascading Style Sheets
+HTML = Hyper Text Markup Language
+PHP = PHP Hypertext Preprocessor
+SQL = Structured Query Language
+SVG = Scalable Vector Graphics
+XML = EXtensible Markup Language
+
+<?php
+$myfile = fopen("webdictionary.txt", "r") or die("Unable to open file!");
+echo fread($myfile,filesize("webdictionary.txt"));
+fclose($myfile);
+?>
+
+Tip: The fread() and the fclose() functions will be explained below.
+
+The file may be opened in one of the following modes:
+
+Modes	Description
+r	Open a file for read only. File pointer starts at the beginning of the file
+w	Open a file for write only. Erases the contents of the file or creates a new file if it doesn't exist. File pointer starts at the beginning of the file
+a	Open a file for write only. The existing data in file is preserved. File pointer starts at the end of the file. Creates a new file if the file doesn't exist
+x	Creates a new file for write only. Returns FALSE and an error if file already exists
+r+	Open a file for read/write. File pointer starts at the beginning of the file
+w+	Open a file for read/write. Erases the contents of the file or creates a new file if it doesn't exist. File pointer starts at the beginning of the file
+a+	Open a file for read/write. The existing data in file is preserved. File pointer starts at the end of the file. Creates a new file if the file doesn't exist
+x+	Creates a new file for read/write. Returns FALSE and an error if file already exists
+
+PHP Read File - fread()
+The fread() function reads from an open file.
+
+The first parameter of fread() contains the name of the file to read from and the second parameter specifies the maximum number of bytes to read.
+
+The following PHP code reads the "webdictionary.txt" file to the end:
+
+fread($myfile,filesize("webdictionary.txt"));
+PHP Close File - fclose()
+The fclose() function is used to close an open file.
+
+It's a good programming practice to close all files after you have finished with them. You don't want an open file running around on your server taking up resources!
+
+The fclose() requires the name of the file (or a variable that holds the filename) we want to close:
+
+<?php
+$myfile = fopen("webdictionary.txt", "r");
+// some code to be executed....
+fclose($myfile);
+?>
+ADVERTISEMENT
+
+PHP Read Single Line - fgets()
+The fgets() function is used to read a single line from a file.
+
+The example below outputs the first line of the "webdictionary.txt" file:
+
+Example
+<?php
+$myfile = fopen("webdictionary.txt", "r") or die("Unable to open file!");
+echo fgets($myfile);
+fclose($myfile);
+?>
+Note: After a call to the fgets() function, the file pointer has moved to the next line.
+
+PHP Check End-Of-File - feof()
+The feof() function checks if the "end-of-file" (EOF) has been reached.
+
+The feof() function is useful for looping through data of unknown length.
+
+The example below reads the "webdictionary.txt" file line by line, until end-of-file is reached:
+
+Example
+<?php
+$myfile = fopen("webdictionary.txt", "r") or die("Unable to open file!");
+// Output one line until end-of-file
+while(!feof($myfile)) {
+  echo fgets($myfile) . "<br>";
+}
+fclose($myfile);
+?>
+ADVERTISEMENT
+
+PHP Read Single Character - fgetc()
+The fgetc() function is used to read a single character from a file.
+
+The example below reads the "webdictionary.txt" file character by character, until end-of-file is reached:
+
+Example
+<?php
+$myfile = fopen("webdictionary.txt", "r") or die("Unable to open file!");
+// Output one character until end-of-file
+while(!feof($myfile)) {
+  echo fgetc($myfile);
+}
+fclose($myfile);
+?>
+Note: After a call to the fgetc() function, the file pointer moves to the next character.
+PHP Create File - fopen()
+The fopen() function is also used to create a file. Maybe a little confusing, but in PHP, a file is created using the same function used to open files.
+
+If you use fopen() on a file that does not exist, it will create it, given that the file is opened for writing (w) or appending (a).
+
+The example below creates a new file called "testfile.txt". The file will be created in the same directory where the PHP code resides:
+
+ExampleGet your own PHP Server
+$myfile = fopen("testfile.txt", "w")
+
+ADVERTISEMENT
+
+Recommended videosPowered by Snigel
+JavaScript - Introduction
+
+Unmute
+Duration 
+2:49
+/
+Current Time 
+0:01
+
+Advanced Settings
+
+Fullscreen
+
+Play
+
+Rewind 10 Seconds
+
+Up Next
+Brand logo
+
+PHP File Permissions
+If you are having errors when trying to get this code to run, check that you have granted your PHP file access to write information to the hard drive.
+
+PHP Write to File - fwrite()
+The fwrite() function is used to write to a file.
+
+The first parameter of fwrite() contains the name of the file to write to and the second parameter is the string to be written.
+
+The example below writes a couple of names into a new file called "newfile.txt":
+
+Example
+<?php
+$myfile = fopen("newfile.txt", "w") or die("Unable to open file!");
+$txt = "John Doe\n";
+fwrite($myfile, $txt);
+$txt = "Jane Doe\n";
+fwrite($myfile, $txt);
+fclose($myfile);
+?>
+
+Notice that we wrote to the file "newfile.txt" twice. Each time we wrote to the file we sent the string $txt that first contained "John Doe" and second contained "Jane Doe". After we finished writing, we closed the file using the fclose() function.
+
+If we open the "newfile.txt" file it would look like this:
+
+John Doe
+Jane Doe
+ADVERTISEMENT
+
+PHP Overwriting
+Now that "newfile.txt" contains some data we can show what happens when we open an existing file for writing. All the existing data will be ERASED and we start with an empty file.
+
+In the example below we open our existing file "newfile.txt", and write some new data into it:
+
+Example
+<?php
+$myfile = fopen("newfile.txt", "w") or die("Unable to open file!");
+$txt = "Mickey Mouse\n";
+fwrite($myfile, $txt);
+$txt = "Minnie Mouse\n";
+fwrite($myfile, $txt);
+fclose($myfile);
+?>
+
+If we now open the "newfile.txt" file, both John and Jane have vanished, and only the data we just wrote is present:
+
+Mickey Mouse
+Minnie Mouse
+PHP Append Text
+You can append data to a file by using the "a" mode. The "a" mode appends text to the end of the file, while the "w" mode overrides (and erases) the old content of the file.
+
+In the example below we open our existing file "newfile.txt", and append some text to it:
+
+Example
+<?php
+$myfile = fopen("newfile.txt", "a") or die("Unable to open file!");
+$txt = "Donald Duck\n";
+fwrite($myfile, $txt);
+$txt = "Goofy Goof\n";
+fwrite($myfile, $txt);
+fclose($myfile);
+?>
+
+If we now open the "newfile.txt" file, we will see that Donald Duck and Goofy Goof is appended to the end of the file:
+
+Mickey Mouse
+Minnie Mouse
+Donald Duck
+Goofy Goof
+
+PHP File Upload
+With PHP, it is easy to upload files to the server.
+
+However, with ease comes danger, so always be careful when allowing file uploads!
+
+Configure The "php.ini" File
+First, ensure that PHP is configured to allow file uploads.
+
+In your "php.ini" file, search for the file_uploads directive, and set it to On:
+
+file_uploads = On
+Create The HTML Form
+Next, create an HTML form that allow users to choose the image file they want to upload:
+
+<!DOCTYPE html>
+<html>
+<body>
+
+<form action="upload.php" method="post" enctype="multipart/form-data">
+  Select image to upload:
+  <input type="file" name="fileToUpload" id="fileToUpload">
+  <input type="submit" value="Upload Image" name="submit">
+</form>
+
+</body>
+</html>
+Some rules to follow for the HTML form above:
+
+Make sure that the form uses method="post"
+The form also needs the following attribute: enctype="multipart/form-data". It specifies which content-type to use when submitting the form
+Without the requirements above, the file upload will not work.
+
+Other things to notice:
+
+The type="file" attribute of the <input> tag shows the input field as a file-select control, with a "Browse" button next to the input control
+The form above sends data to a file called "upload.php", which we will create next.
+
+ADVERTISEMENT
+
+Recommended videosPowered by Snigel
+JavaScript - Introduction
+Play VideoBrand logo
+
+Create The Upload File PHP Script
+The "upload.php" file contains the code for uploading a file:
+
+<?php
+$target_dir = "uploads/";
+$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+$uploadOk = 1;
+$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+// Check if image file is a actual image or fake image
+if(isset($_POST["submit"])) {
+  $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+  if($check !== false) {
+    echo "File is an image - " . $check["mime"] . ".";
+    $uploadOk = 1;
+  } else {
+    echo "File is not an image.";
+    $uploadOk = 0;
+  }
+}
+?>
+PHP script explained:
+
+$target_dir = "uploads/" - specifies the directory where the file is going to be placed
+$target_file specifies the path of the file to be uploaded
+$uploadOk=1 is not used yet (will be used later)
+$imageFileType holds the file extension of the file (in lower case)
+Next, check if the image file is an actual image or a fake image
+
+Note: You will need to create a new directory called "uploads" in the directory where "upload.php" file resides. The uploaded files will be saved there.
+
+ADVERTISEMENT
+
+Check if File Already Exists
+Now we can add some restrictions.
+
+First, we will check if the file already exists in the "uploads" folder. If it does, an error message is displayed, and $uploadOk is set to 0:
+
+// Check if file already exists
+if (file_exists($target_file)) {
+  echo "Sorry, file already exists.";
+  $uploadOk = 0;
+}
+Limit File Size
+The file input field in our HTML form above is named "fileToUpload".
+
+Now, we want to check the size of the file. If the file is larger than 500KB, an error message is displayed, and $uploadOk is set to 0:
+
+// Check file size
+if ($_FILES["fileToUpload"]["size"] > 500000) {
+  echo "Sorry, your file is too large.";
+  $uploadOk = 0;
+}
+ADVERTISEMENT
+
+Limit File Type
+The code below only allows users to upload JPG, JPEG, PNG, and GIF files. All other file types gives an error message before setting $uploadOk to 0:
+
+// Allow certain file formats
+if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+&& $imageFileType != "gif" ) {
+  echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+  $uploadOk = 0;
+}
+Complete Upload File PHP Script
+The complete "upload.php" file now looks like this:
+
+<?php
+$target_dir = "uploads/";
+$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+$uploadOk = 1;
+$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+
+// Check if image file is a actual image or fake image
+if(isset($_POST["submit"])) {
+  $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+  if($check !== false) {
+    echo "File is an image - " . $check["mime"] . ".";
+    $uploadOk = 1;
+  } else {
+    echo "File is not an image.";
+    $uploadOk = 0;
+  }
+}
+
+// Check if file already exists
+if (file_exists($target_file)) {
+  echo "Sorry, file already exists.";
+  $uploadOk = 0;
+}
+
+// Check file size
+if ($_FILES["fileToUpload"]["size"] > 500000) {
+  echo "Sorry, your file is too large.";
+  $uploadOk = 0;
+}
+
+// Allow certain file formats
+if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+&& $imageFileType != "gif" ) {
+  echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+  $uploadOk = 0;
+}
+
+// Check if $uploadOk is set to 0 by an error
+if ($uploadOk == 0) {
+  echo "Sorry, your file was not uploaded.";
+// if everything is ok, try to upload file
+} else {
+  if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+    echo "The file ". htmlspecialchars( basename( $_FILES["fileToUpload"]["name"])). " has been uploaded.";
+  } else {
+    echo "Sorry, there was an error uploading your file.";
+  }
+}
+?>
+
+PHP Cookies
+What is a Cookie?
+A cookie is often used to identify a user. A cookie is a small file that the server embeds on the user's computer. Each time the same computer requests a page with a browser, it will send the cookie too. With PHP, you can both create and retrieve cookie values.
+
+Create Cookies With PHP
+A cookie is created with the setcookie() function.
+
+Syntax
+setcookie(name, value, expire, path, domain, secure, httponly);
+Only the name parameter is required. All other parameters are optional.
+
+ADVERTISEMENT
+
+Recommended videosPowered by Snigel
+JavaScript - Introduction
+Play VideoBrand logo
+
+
+PHP Create/Retrieve a Cookie
+The following example creates a cookie named "user" with the value "John Doe". The cookie will expire after 30 days (86400 * 30). The "/" means that the cookie is available in entire website (otherwise, select the directory you prefer).
+
+We then retrieve the value of the cookie "user" (using the global variable $_COOKIE). We also use the isset() function to find out if the cookie is set:
+
+ExampleGet your own PHP Server
+<?php
+$cookie_name = "user";
+$cookie_value = "John Doe";
+setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/"); // 86400 = 1 day
+?>
+<html>
+<body>
+
+<?php
+if(!isset($_COOKIE[$cookie_name])) {
+  echo "Cookie named '" . $cookie_name . "' is not set!";
+} else {
+  echo "Cookie '" . $cookie_name . "' is set!<br>";
+  echo "Value is: " . $_COOKIE[$cookie_name];
+}
+?>
+
+</body>
+</html>
+
+Note: The setcookie() function must appear BEFORE the <html> tag.
+
+Note: The value of the cookie is automatically URLencoded when sending the cookie, and automatically decoded when received (to prevent URLencoding, use setrawcookie() instead).
+
+ADVERTISEMENT
+
+Modify a Cookie Value
+To modify a cookie, just set (again) the cookie using the setcookie() function:
+
+Example
+<?php
+$cookie_name = "user";
+$cookie_value = "Alex Porter";
+setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/");
+?>
+<html>
+<body>
+
+<?php
+if(!isset($_COOKIE[$cookie_name])) {
+  echo "Cookie named '" . $cookie_name . "' is not set!";
+} else {
+  echo "Cookie '" . $cookie_name . "' is set!<br>";
+  echo "Value is: " . $_COOKIE[$cookie_name];
+}
+?>
+
+</body>
+</html>
+Delete a Cookie
+To delete a cookie, use the setcookie() function with an expiration date in the past:
+
+Example
+<?php
+// set the expiration date to one hour ago
+setcookie("user", "", time() - 3600);
+?>
+<html>
+<body>
+
+<?php
+echo "Cookie 'user' is deleted.";
+?>
+
+</body>
+</html>
+ADVERTISEMENT
+
+Check if Cookies are Enabled
+The following example creates a small script that checks whether cookies are enabled. First, try to create a test cookie with the setcookie() function, then count the $_COOKIE array variable:
+
+Example
+<?php
+setcookie("test_cookie", "test", time() + 3600, '/');
+?>
+<html>
+<body>
+
+<?php
+if(count($_COOKIE) > 0) {
+  echo "Cookies are enabled.";
+} else {
+  echo "Cookies are disabled.";
+}
+?>
+
+</body>
+</html>
+
+PHP Sessions
+A session is a way to store information (in variables) to be used across multiple pages.
+
+Unlike a cookie, the information is not stored on the users computer.
+
+What is a PHP Session?
+When you work with an application, you open it, do some changes, and then you close it. This is much like a Session. The computer knows who you are. It knows when you start the application and when you end. But on the internet there is one problem: the web server does not know who you are or what you do, because the HTTP address doesn't maintain state.
+
+Session variables solve this problem by storing user information to be used across multiple pages (e.g. username, favorite color, etc). By default, session variables last until the user closes the browser.
+
+So; Session variables hold information about one single user, and are available to all pages in one application.
+
+Tip: If you need a permanent storage, you may want to store the data in a database.
+
+ADVERTISEMENT
+
+Recommended videosPowered by Snigel
+JavaScript - Introduction
+Play VideoBrand logo
+
+
+Start a PHP Session
+A session is started with the session_start() function.
+
+Session variables are set with the PHP global variable: $_SESSION.
+
+Now, let's create a new page called "demo_session1.php". In this page, we start a new PHP session and set some session variables:
+
+ExampleGet your own PHP Server
+<?php
+// Start the session
+session_start();
+?>
+<!DOCTYPE html>
+<html>
+<body>
+
+<?php
+// Set session variables
+$_SESSION["favcolor"] = "green";
+$_SESSION["favanimal"] = "cat";
+echo "Session variables are set.";
+?>
+
+</body>
+</html>
+Note: The session_start() function must be the very first thing in your document. Before any HTML tags.
+
+ADVERTISEMENT
+
+Get PHP Session Variable Values
+Next, we create another page called "demo_session2.php". From this page, we will access the session information we set on the first page ("demo_session1.php").
+
+Notice that session variables are not passed individually to each new page, instead they are retrieved from the session we open at the beginning of each page (session_start()).
+
+Also notice that all session variable values are stored in the global $_SESSION variable:
+
+Example
+<?php
+session_start();
+?>
+<!DOCTYPE html>
+<html>
+<body>
+
+<?php
+// Echo session variables that were set on previous page
+echo "Favorite color is " . $_SESSION["favcolor"] . ".<br>";
+echo "Favorite animal is " . $_SESSION["favanimal"] . ".";
+?>
+
+</body>
+</html>
+Another way to show all the session variable values for a user session is to run the following code:
+
+Example
+<?php
+session_start();
+?>
+<!DOCTYPE html>
+<html>
+<body>
+
+<?php
+print_r($_SESSION);
+?>
+
+</body>
+</html>
+How does it work? How does it know it's me?
+
+Most sessions set a user-key on the user's computer that looks something like this: 765487cf34ert8dede5a562e4f3a7e12. Then, when a session is opened on another page, it scans the computer for a user-key. If there is a match, it accesses that session, if not, it starts a new session.
+
+ADVERTISEMENT
+
+Modify a PHP Session Variable
+To change a session variable, just overwrite it:
+
+Example
+<?php
+session_start();
+?>
+<!DOCTYPE html>
+<html>
+<body>
+
+<?php
+// to change a session variable, just overwrite it
+$_SESSION["favcolor"] = "yellow";
+print_r($_SESSION);
+?>
+
+</body>
+</html>
+Destroy a PHP Session
+To remove all global session variables and destroy the session, use session_unset() and session_destroy():
+
+Example
+<?php
+session_start();
+?>
+<!DOCTYPE html>
+<html>
+<body>
+
+<?php
+// remove all session variables
+session_unset();
+
+// destroy the session
+session_destroy();
+?>
+
+</body>
+</html>
+
+PHP Filters
+Validating data = Determine if the data is in proper form.
+
+Sanitizing data = Remove any illegal character from the data.
+
+The PHP Filter Extension
+PHP filters are used to validate and sanitize external input.
+
+The PHP filter extension has many of the functions needed for checking user input, and is designed to make data validation easier and quicker.
+
+The filter_list() function can be used to list what the PHP filter extension offers:
+
+ExampleGet your own PHP Server
+<table>
+  <tr>
+    <td>Filter Name</td>
+    <td>Filter ID</td>
+  </tr>
+  <?php
+  foreach (filter_list() as $id =>$filter) {
+    echo '<tr><td>' . $filter . '</td><td>' . filter_id($filter) . '</td></tr>';
+  }
+  ?>
+</table>
+Why Use Filters?
+Many web applications receive external input. External input/data can be:
+
+User input from a form
+Cookies
+Web services data
+Server variables
+Database query results
+
+You should always validate external data!
+Invalid submitted data can lead to security problems and break your webpage!
+By using PHP filters you can be sure your application gets the correct input!
+
+
+PHP filter_var() Function
+The filter_var() function both validate and sanitize data.
+
+The filter_var() function filters a single variable with a specified filter. It takes two pieces of data:
+
+The variable you want to check
+The type of check to use
+Sanitize a String
+The following example uses the filter_var() function to remove all HTML tags from a string:
+
+Example
+<?php
+$str = "<h1>Hello World!</h1>";
+$newstr = filter_var($str, FILTER_SANITIZE_STRING);
+echo $newstr;
+?>
+Validate an Integer
+The following example uses the filter_var() function to check if the variable $int is an integer. If $int is an integer, the output of the code below will be: "Integer is valid". If $int is not an integer, the output will be: "Integer is not valid":
+
+Example
+<?php
+$int = 100;
+
+if (!filter_var($int, FILTER_VALIDATE_INT) === false) {
+  echo("Integer is valid");
+} else {
+  echo("Integer is not valid");
+}
+?>
+Tip: filter_var() and Problem With 0
+In the example above, if $int was set to 0, the function above will return "Integer is not valid". To solve this problem, use the code below:
+
+Example
+<?php
+$int = 0;
+
+if (filter_var($int, FILTER_VALIDATE_INT) === 0 || !filter_var($int, FILTER_VALIDATE_INT) === false) {
+  echo("Integer is valid");
+} else {
+  echo("Integer is not valid");
+}
+?>
+Validate an IP Address
+The following example uses the filter_var() function to check if the variable $ip is a valid IP address:
+
+Example
+<?php
+$ip = "127.0.0.1";
+
+if (!filter_var($ip, FILTER_VALIDATE_IP) === false) {
+  echo("$ip is a valid IP address");
+} else {
+  echo("$ip is not a valid IP address");
+}
+?>
+Sanitize and Validate an Email Address
+The following example uses the filter_var() function to first remove all illegal characters from the $email variable, then check if it is a valid email address:
+
+Example
+<?php
+$email = "john.doe@example.com";
+
+// Remove all illegal characters from email
+$email = filter_var($email, FILTER_SANITIZE_EMAIL);
+
+// Validate e-mail
+if (!filter_var($email, FILTER_VALIDATE_EMAIL) === false) {
+  echo("$email is a valid email address");
+} else {
+  echo("$email is not a valid email address");
+}
+?>
+Sanitize and Validate a URL
+The following example uses the filter_var() function to first remove all illegal characters from a URL, then check if $url is a valid URL:
+
+Example
+<?php
+$url = "https://www.w3schools.com";
+
+// Remove all illegal characters from a url
+$url = filter_var($url, FILTER_SANITIZE_URL);
+
+// Validate url
+if (!filter_var($url, FILTER_VALIDATE_URL) === false) {
+  echo("$url is a valid URL");
+} else {
+  echo("$url is not a valid URL");
+}
+?>
+Complete PHP Filter Reference
+For a complete reference of all filter functions, go to our complete PHP Filter Reference. Check each filter to see what options and flags are available.
+
+The reference contains a brief description, and examples of use, for each function!
+
+PHP Filters Advanced
+Validate an Integer Within a Range
+The following example uses the filter_var() function to check if a variable is both of type INT, and between 1 and 200:
+
+ExampleGet your own PHP Server
+<?php
+$int = 122;
+$min = 1;
+$max = 200;
+
+if (filter_var($int, FILTER_VALIDATE_INT, array("options" => array("min_range"=>$min, "max_range"=>$max))) === false) {
+  echo("Variable value is not within the legal range");
+} else {
+  echo("Variable value is within the legal range");
+}
+?>
+ADVERTISEMENT
+
+Recommended videosPowered by Snigel
+JavaScript - Introduction
+Play VideoBrand logo
+
+
+Validate IPv6 Address
+The following example uses the filter_var() function to check if the variable $ip is a valid IPv6 address:
+
+Example
+<?php
+$ip = "2001:0db8:85a3:08d3:1319:8a2e:0370:7334";
+
+if (!filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6) === false) {
+  echo("$ip is a valid IPv6 address");
+} else {
+  echo("$ip is not a valid IPv6 address");
+}
+?>
+Validate URL - Must Contain QueryString
+The following example uses the filter_var() function to check if the variable $url is a URL with a querystring:
+
+Example
+<?php
+$url = "https://www.w3schools.com";
+
+if (!filter_var($url, FILTER_VALIDATE_URL, FILTER_FLAG_QUERY_REQUIRED) === false) {
+  echo("$url is a valid URL with a query string");
+} else {
+  echo("$url is not a valid URL with a query string");
+}
+?>
+ADVERTISEMENT
+
+Remove Characters With ASCII Value > 127
+The following example uses the filter_var() function to sanitize a string. It will both remove all HTML tags, and all characters with ASCII value > 127, from the string:
+
+Example
+<?php
+$str = "<h1>Hello WorldÆØÅ!</h1>";
+
+$newstr = filter_var($str, FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_HIGH);
+echo $newstr;
+?>
+Complete PHP Filter Reference
+For a complete reference of all filter functions, go to our complete PHP Filter Reference. Check each filter to see what options and flags are available.
+
+The reference contains a brief description, and examples of use, for each function!
+
+PHP Callback Functions
+Callback Functions
+A callback function (often referred to as just "callback") is a function which is passed as an argument into another function.
+
+Any existing function can be used as a callback function. To use a function as a callback function, pass a string containing the name of the function as the argument of another function:
+
+ExampleGet your own PHP Server
+Pass a callback to PHP's array_map() function to calculate the length of every string in an array:
+
+<?php
+function my_callback($item) {
+  return strlen($item);
+}
+
+$strings = ["apple", "orange", "banana", "coconut"];
+$lengths = array_map("my_callback", $strings);
+print_r($lengths);
+?>
+Starting with version 7, PHP can pass anonymous functions as callback functions:
+
+Example
+Use an anonymous function as a callback for PHP's array_map() function:
+
+<?php
+$strings = ["apple", "orange", "banana", "coconut"];
+$lengths = array_map( function($item) { return strlen($item); } , $strings);
+print_r($lengths);
+?>
+ADVERTISEMENT
+
+Recommended videosPowered by Snigel
+JavaScript - Introduction
+
+Unmute
+Duration 
+2:49
+/
+Current Time 
+0:00
+
+Advanced Settings
+
+Fullscreen
+
+Play
+
+Rewind 10 Seconds
+
+Up Next
+Brand logo
+
+
+Callbacks in User Defined Functions
+User-defined functions and methods can also take callback functions as arguments. To use callback functions inside a user-defined function or method, call it by adding parentheses to the variable and pass arguments as with normal functions:
+
+Example
+Run a callback from a user-defined function:
+
+<?php
+function exclaim($str) {
+  return $str . "! ";
+}
+
+function ask($str) {
+  return $str . "? ";
+}
+
+function printFormatted($str, $format) {
+  // Calling the $format callback function
+  echo $format($str);
+}
+
+// Pass "exclaim" and "ask" as callback functions to printFormatted()
+printFormatted("Hello world", "exclaim");
+printFormatted("Hello world", "ask");
+?>
